@@ -53,11 +53,12 @@
                 </div>
                 <span class="font-extrabold text-xl tracking-wider text-white">NEXUS<span class="text-emerald-400">COMMUNITY</span></span>
             </div>
-            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+            <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
                 <a href="#home" class="hover:text-emerald-400 transition">Beranda</a>
                 <a href="#about" class="hover:text-emerald-400 transition">Tentang Kami</a>
+                <a href="#roles-info" class="hover:text-emerald-400 transition">Struktur Roles</a>
                 <a href="#rules" class="hover:text-emerald-400 transition">Peraturan</a>
-                <a href="#community" class="hover:text-emerald-400 transition">Mabar & Ngobrol</a>
+                <a href="#community" class="hover:text-emerald-400 transition">Mabar</a>
             </div>
             <div>
                 <a href="#community" class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-xl font-medium text-sm transition shadow-lg shadow-emerald-600/30 flex items-center gap-2">
@@ -85,8 +86,8 @@
                 Selamat datang di <strong class="text-emerald-300 font-semibold">Nexus Community</strong>. Wadah buat lo yang cari temen mabar game, nongkrong santai di voice channel, dan nambah relasi positif sesama gamer.
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#rules" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3.5 rounded-xl font-semibold transition shadow-xl shadow-emerald-600/30 flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-scroll"></i> Baca Peraturan
+                <a href="#roles-info" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3.5 rounded-xl font-semibold transition shadow-xl shadow-emerald-600/30 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-id-badge"></i> Lihat Roles Server
                 </a>
                 <a href="#community" class="w-full sm:w-auto bg-gray-900/80 hover:bg-gray-800 text-emerald-300 border border-emerald-500/30 px-8 py-3.5 rounded-xl font-semibold transition backdrop-blur-md flex items-center justify-center gap-2">
                     <i class="fa-solid fa-users"></i> Eksplor Komunitas
@@ -126,6 +127,156 @@
                         Staf profesional yang sigap menjaga kenyamanan server dari keributan, spam, dan hal-hal toksik lainnya.
                     </p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roles Information Section -->
+    <section id="roles-info" class="py-24 max-w-5xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <span class="text-emerald-400 font-semibold text-sm uppercase tracking-widest">Hirarki Server</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-2 mb-4">Struktur & Penjelasan Roles</h2>
+            <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base">
+                Kenali tingkatan dan tugas dari masing-masing role yang ada di dalam server Nexus Community agar lo paham fungsi dan tanggung jawabnya!
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Role 1: Executive Board -->
+            <div class="bg-gray-900/70 border border-emerald-900/40 rounded-2xl p-6 transition hover:border-emerald-500/50 flex items-start gap-4">
+                <div class="w-3 h-3 rounded-full bg-emerald-400 mt-2 flex-shrink-0 shadow-lg shadow-emerald-400/50"></div>
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-xl">👑</span>
+                        <h3 class="text-lg font-bold text-white">Executive Board</h3>
+                    </div>
+                    <p class="text-emerald-400 text-xs font-semibold mb-2">Owner / Pimpinan Utama</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Pemilik server dan pengambil keputusan tertinggi. Mengawasi jalannya seluruh komunitas, mengatur visi server, dan memegang kendali penuh atas kebijakan komunitas.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Role 2: Management Team -->
+            <div class="bg-gray-900/70 border border-emerald-900/40 rounded-2xl p-6 transition hover:border-emerald-500/50 flex items-start gap-4">
+                <div class="w-3 h-3 rounded-full bg-sky-300 mt-2 flex-shrink-0 shadow-lg shadow-sky-300/50"></div>
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-xl">⚡</span>
+                        <h3 class="text-lg font-bold text-white">Management Team</h3>
+                    </div>
+                    <p class="text-sky-400 text-xs font-semibold mb-2">Manajer & Pengurus Harian</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Bertanggung jawab mengurus operasional server sehari-hari, merancang event seru, mengatur kerja staf, serta memastikan semua berjalan lancar.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Role 3: Moderation Team -->
+            <div class="bg-gray-900/70 border border-emerald-900/40 rounded-2xl p-6 transition hover:border-emerald-500/50 flex items-start gap-4">
+                <div class="w-3 h-3 rounded-full bg-sky-400 mt-2 flex-shrink-0 shadow-lg shadow-sky-400/50"></div>
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-xl">🛡️</span>
+                        <h3 class="text-lg font-bold text-white">Moderation Team</h3>
+                    </div>
+                    <p class="text-sky-300 text-xs font-semibold mb-2">Admin & Moderator</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Garda terdepan yang menjaga ketertiban chat dan voice channel. Menindak tegas pelanggar aturan, menangani laporan member, dan mencegah keributan (drama).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Role 4: Development Team -->
+            <div class="bg-gray-900/70 border border-emerald-900/40 rounded-2xl p-6 transition hover:border-emerald-500/50 flex items-start gap-4">
+                <div class="w-3 h-3 rounded-full bg-blue-600 mt-2 flex-shrink-0 shadow-lg shadow-blue-600/50"></div>
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-xl">💻</span>
+                        <h3 class="text-lg font-bold text-white">Development Team</h3>
+                    </div>
+                    <p class="text-blue-400 text-xs font-semibold mb-2">Developer / Programmer</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Bertugas merancang, mengupdate, dan memperbaiki fitur-fitur teknis server, bot discord, integrasi website, serta sistem kustom yang ada di komunitas.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Role 5: Bot Fleet -->
+            <div class="bg-gray-900/70 border border-emerald-900/40 rounded-2xl p-6 transition hover:border-emerald-500/50 flex items-start gap-4">
+                <div class="w-3 h-3 rounded-full bg-pink-600 mt-2 flex-shrink-0 shadow-lg shadow-pink-600/50"></div>
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-xl">🤖</span>
+                        <h3 class="text-lg font-bold text-white">Bot Fleet</h3>
+                    </div>
+                    <p class="text-pink-400 text-xs font-semibold mb-2">Sistem Bot Otomatis</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Kumpulan bot otomatis yang membantu moderasi server, memutar musik di voice channel, memberikan verifikasi, dan memproses perintah member.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Role 6: Content Creator -->
+            <div class="bg-gray-900/70 border border-emerald-900/40 rounded-2xl p-6 transition hover:border-emerald-500/50 flex items-start gap-4">
+                <div class="w-3 h-3 rounded-full bg-red-600 mt-2 flex-shrink-0 shadow-lg shadow-red-600/50"></div>
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-xl">🎥</span>
+                        <h3 class="text-lg font-bold text-white">Content Creator</h3>
+                    </div>
+                    <p class="text-red-400 text-xs font-semibold mb-2">Streamer & Kreator</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Member yang aktif membuat konten, live streaming game bareng komunitas, atau mempromosikan keseruan server Nexus Community ke publik.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Role 7: Friends -->
+            <div class="bg-gray-900/70 border border-emerald-900/40 rounded-2xl p-6 transition hover:border-emerald-500/50 flex items-start gap-4">
+                <div class="w-3 h-3 rounded-full bg-purple-500 mt-2 flex-shrink-0 shadow-lg shadow-purple-500/50"></div>
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-xl">👤</span>
+                        <h3 class="text-lg font-bold text-white">Friends</h3>
+                    </div>
+                    <p class="text-purple-400 text-xs font-semibold mb-2">Rekan & Partner Khusus</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Teman dekat, partner kerja sama, atau tamu spesial yang memiliki hubungan baik dengan para petinggi server.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Role 8: Contributor -->
+            <div class="bg-gray-900/70 border border-emerald-900/40 rounded-2xl p-6 transition hover:border-emerald-500/50 flex items-start gap-4">
+                <div class="w-3 h-3 rounded-full bg-emerald-700 mt-2 flex-shrink-0 shadow-lg shadow-emerald-700/50"></div>
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-xl">⭐</span>
+                        <h3 class="text-lg font-bold text-white">Contributor</h3>
+                    </div>
+                    <p class="text-emerald-400 text-xs font-semibold mb-2">Penyumbang Kontribusi</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Member aktif yang memberikan kontribusi positif bagi perkembangan server, baik berupa saran, aset, donasi, atau bantuan lainnya.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Verified Member Card (Full Width) -->
+        <div class="mt-6 bg-gray-900/70 border border-emerald-900/40 rounded-2xl p-6 transition hover:border-emerald-500/50 flex items-start gap-4">
+            <div class="w-3 h-3 rounded-full bg-white mt-2 flex-shrink-0 shadow-lg shadow-white/50"></div>
+            <div>
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="text-xl">✨</span>
+                    <h3 class="text-lg font-bold text-white">Verified Member</h3>
+                </div>
+                <p class="text-emerald-300 text-xs font-semibold mb-2">Anggota Resmi Terverifikasi</p>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    Role dasar untuk seluruh member yang telah menyelesaikan verifikasi. Berhak mengakses seluruh kanal chat umum, voice channel mabar, dan ikut serta dalam kegiatan seru di server.
+                </p>
             </div>
         </div>
     </section>
