@@ -34,10 +34,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome untuk Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Identity Services (GIS) SDK -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <!-- JWT Decoder ringan untuk membaca data user dari Google token -->
-    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -63,34 +59,11 @@
                 <a href="#community" class="hover:text-emerald-400 transition">Mabar</a>
             </div>
             
-            <!-- Tombol Login / Profil User Google -->
-            <div id="auth-container">
-                <!-- Tombol Login Google (Default) -->
-                <div id="g_id_onload"
-                     data-client_id="MASUKKAN_GOOGLE_CLIENT_ID_ANDA_DISINI.apps.googleusercontent.com"
-                     data-callback="handleCredentialResponse"
-                     data-auto_prompt="false">
-                </div>
-                <div class="g_id_signin"
-                     data-type="standard"
-                     data-shape="pill"
-                     data-theme="filled_black"
-                     data-text="signin_with"
-                     data-size="large"
-                     data-logo_alignment="left">
-                </div>
-
-                <!-- Status Profil (Hidden sebelum login) -->
-                <div id="user-profile" class="hidden items-center gap-3 bg-gray-900/80 border border-emerald-500/30 px-3 py-1.5 rounded-xl">
-                    <img id="user-avatar" src="" alt="Avatar" class="w-8 h-8 rounded-full border border-emerald-400">
-                    <div class="text-left">
-                        <p id="user-name" class="text-xs font-bold text-white leading-tight">Username</p>
-                        <span class="text-[10px] text-emerald-400 font-medium">Google Verified</span>
-                    </div>
-                    <button onclick="logoutGoogle()" class="ml-2 text-gray-400 hover:text-red-400 transition text-sm" title="Logout">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                    </button>
-                </div>
+            <!-- Tombol Cepat Menuju Discord -->
+            <div>
+                <a href="#community" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs md:text-sm font-semibold px-4 py-2 rounded-xl transition shadow-lg shadow-emerald-600/30 flex items-center gap-2">
+                    <i class="fa-brands fa-discord"></i> Join Discord
+                </a>
             </div>
         </div>
     </nav>
@@ -468,56 +441,5 @@
     <footer class="bg-gray-950 border-t border-emerald-950 py-8 text-center text-gray-500 text-sm">
         <p>&copy; 2026 Nexus Community. All rights reserved.</p>
     </footer>
-
-    <!-- Script Google Sign-In -->
-    <script>
-        function handleCredentialResponse(response) {
-            // Decode token JWT dari Google untuk ambil data profil (Nama, Email, Foto)
-            const responsePayload = jwt_decode(response.credential);
-
-            const userName = responsePayload.name;
-            const userAvatar = responsePayload.picture;
-
-            // Simpan ke localStorage agar sesi tetap tersimpan saat refresh
-            localStorage.setItem('google_logged_in', 'true');
-            localStorage.setItem('google_username', userName);
-            localStorage.setItem('google_avatar', userAvatar);
-
-            checkLoginState();
-        }
-
-        function logoutGoogle() {
-            localStorage.removeItem('google_logged_in');
-            localStorage.removeItem('google_username');
-            localStorage.removeItem('google_avatar');
-            
-            // Reload halaman atau reset tampilan tombol login google
-            location.reload();
-        }
-
-        function checkLoginState() {
-            const isLoggedIn = localStorage.getItem('google_logged_in');
-            const googleBtn = document.querySelector('.g_id_signin');
-            const googleScriptLoad = document.getElementById('g_id_onload');
-            const profileDiv = document.getElementById('user-profile');
-
-            if (isLoggedIn) {
-                if (googleBtn) googleBtn.style.display = 'none';
-                if (googleScriptLoad) googleScriptLoad.remove();
-                
-                profileDiv.classList.remove('hidden');
-                profileDiv.classList.add('flex');
-                
-                document.getElementById('user-name').innerText = localStorage.getItem('google_username');
-                document.getElementById('user-avatar').src = localStorage.getItem('google_avatar');
-            } else {
-                profileDiv.classList.remove('flex');
-                profileDiv.classList.add('hidden');
-            }
-        }
-
-        // Cek status saat halaman dimuat
-        window.onload = checkLoginState;
-    </script>
 </body>
 </html>
