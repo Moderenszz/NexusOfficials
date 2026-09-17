@@ -9,10 +9,8 @@
     <meta property="Tittle" content="Nexus Community | Mabar & Ngobrol Bareng">
     <meta property="og:title" content="Nexus Community - Server Gaming & Nongkrong Paling Seru!">
     <meta property="og:description" content="Tempat seru-seruan, mabar, dan ngobrol bareng! Cari temen mabar game favoritmu dan nongkrong asyik di sini. Yuk gabung sekarang!">
-    <!-- Link banner hijau estetik (diambil dari unsplash bertema cyber/green gaming) -->
     <meta property="og:image" content="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop">
     <meta property="og:url" content="https://pelukciumfirst.github.io/nexus-community/">
-    <!-- Biar warna embed Discord di sebelah kiri jadi hijau gelap -->
     <meta name="theme-color" content="#10b981">
 
     <!-- Tailwind CSS CDN -->
@@ -60,10 +58,25 @@
                 <a href="#rules" class="hover:text-emerald-400 transition">Peraturan</a>
                 <a href="#community" class="hover:text-emerald-400 transition">Mabar</a>
             </div>
-            <div>
-                <a href="#community" class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-xl font-medium text-sm transition shadow-lg shadow-emerald-600/30 flex items-center gap-2">
-                    <i class="fa-brands fa-discord"></i> Gabung Discord
-                </a>
+            
+            <!-- Tombol Login / Profil User Discord -->
+            <div id="auth-container">
+                <!-- Tombol Login Discord (Default) -->
+                <button onclick="loginDiscord()" class="bg-[#5865F2] hover:bg-[#4752C4] text-white px-4 py-2 rounded-xl font-medium text-sm transition shadow-lg shadow-[#5865F2]/30 flex items-center gap-2">
+                    <i class="fa-brands fa-discord text-lg"></i> Login Discord
+                </button>
+
+                <!-- Status Profil (Hidden sebelum login) -->
+                <div id="user-profile" class="hidden items-center gap-3 bg-gray-900/80 border border-emerald-500/30 px-3 py-1.5 rounded-xl">
+                    <img id="user-avatar" src="" alt="Avatar" class="w-8 h-8 rounded-full border border-emerald-400">
+                    <div class="text-left">
+                        <p id="user-name" class="text-xs font-bold text-white leading-tight">Username</p>
+                        <span class="text-[10px] text-emerald-400 font-medium">Verified Member</span>
+                    </div>
+                    <button onclick="logoutDiscord()" class="ml-2 text-gray-400 hover:text-red-400 transition text-sm" title="Logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
@@ -142,7 +155,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
             <!-- Role 1: Executive Board -->
             <div class="bg-gray-900/70 border border-emerald-900/40 rounded-2xl p-6 transition hover:border-emerald-500/50 flex items-start gap-4">
                 <div class="w-3 h-3 rounded-full bg-emerald-400 mt-2 flex-shrink-0 shadow-lg shadow-emerald-400/50"></div>
@@ -292,7 +304,6 @@
                     </p>
                 </div>
             </div>
-
         </div>
 
         <!-- Verified Member Card (Full Width) -->
@@ -444,5 +455,44 @@
         <p>&copy; 2026 Nexus Community. All rights reserved.</p>
     </footer>
 
+    <!-- Script Simulasi Login Discord -->
+    <script>
+        function loginDiscord() {
+            // Simulasi sukses login untuk tes tampilan frontend
+            localStorage.setItem('discord_logged_in', 'true');
+            localStorage.setItem('discord_username', 'pelukciumfirst');
+            localStorage.setItem('discord_avatar', 'https://cdn.discordapp.com/embed/avatars/0.png');
+            checkLoginState();
+        }
+
+        function logoutDiscord() {
+            localStorage.removeItem('discord_logged_in');
+            localStorage.removeItem('discord_username');
+            localStorage.removeItem('discord_avatar');
+            checkLoginState();
+        }
+
+        function checkLoginState() {
+            const isLoggedIn = localStorage.getItem('discord_logged_in');
+            const loginBtn = document.querySelector('#auth-container button');
+            const profileDiv = document.getElementById('user-profile');
+
+            if (isLoggedIn) {
+                loginBtn.classList.add('hidden');
+                profileDiv.classList.remove('hidden');
+                profileDiv.classList.add('flex');
+                
+                document.getElementById('user-name').innerText = localStorage.getItem('discord_username');
+                document.getElementById('user-avatar').src = localStorage.getItem('discord_avatar');
+            } else {
+                loginBtn.classList.remove('hidden');
+                profileDiv.classList.remove('flex');
+                profileDiv.classList.add('hidden');
+            }
+        }
+
+        // Cek status saat halaman dimuat
+        window.onload = checkLoginState;
+    </script>
 </body>
 </html>
