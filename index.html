@@ -34,6 +34,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome untuk Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Identity Services (GIS) SDK -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- JWT Decoder ringan untuk membaca data user dari Google token -->
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -59,21 +63,31 @@
                 <a href="#community" class="hover:text-emerald-400 transition">Mabar</a>
             </div>
             
-            <!-- Tombol Login / Profil User Discord -->
+            <!-- Tombol Login / Profil User Google -->
             <div id="auth-container">
-                <!-- Tombol Login Discord (Default) -->
-                <button onclick="loginDiscord()" class="bg-[#5865F2] hover:bg-[#4752C4] text-white px-4 py-2 rounded-xl font-medium text-sm transition shadow-lg shadow-[#5865F2]/30 flex items-center gap-2">
-                    <i class="fa-brands fa-discord text-lg"></i> Login Discord
-                </button>
+                <!-- Tombol Login Google (Default) -->
+                <div id="g_id_onload"
+                     data-client_id="MASUKKAN_GOOGLE_CLIENT_ID_ANDA_DISINI.apps.googleusercontent.com"
+                     data-callback="handleCredentialResponse"
+                     data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-shape="pill"
+                     data-theme="filled_black"
+                     data-text="signin_with"
+                     data-size="large"
+                     data-logo_alignment="left">
+                </div>
 
                 <!-- Status Profil (Hidden sebelum login) -->
                 <div id="user-profile" class="hidden items-center gap-3 bg-gray-900/80 border border-emerald-500/30 px-3 py-1.5 rounded-xl">
                     <img id="user-avatar" src="" alt="Avatar" class="w-8 h-8 rounded-full border border-emerald-400">
                     <div class="text-left">
                         <p id="user-name" class="text-xs font-bold text-white leading-tight">Username</p>
-                        <span class="text-[10px] text-emerald-400 font-medium">Verified Member</span>
+                        <span class="text-[10px] text-emerald-400 font-medium">Google Verified</span>
                     </div>
-                    <button onclick="logoutDiscord()" class="ml-2 text-gray-400 hover:text-red-400 transition text-sm" title="Logout">
+                    <button onclick="logoutGoogle()" class="ml-2 text-gray-400 hover:text-red-400 transition text-sm" title="Logout">
                         <i class="fa-solid fa-right-from-bracket"></i>
                     </button>
                 </div>
@@ -455,37 +469,48 @@
         <p>&copy; 2026 Nexus Community. All rights reserved.</p>
     </footer>
 
-    <!-- Script Simulasi Login Discord -->
+    <!-- Script Google Sign-In -->
     <script>
-        function loginDiscord() {
-            // Simulasi sukses login untuk tes tampilan frontend
-            localStorage.setItem('discord_logged_in', 'true');
-            localStorage.setItem('discord_username', 'pelukciumfirst');
-            localStorage.setItem('discord_avatar', 'https://cdn.discordapp.com/embed/avatars/0.png');
+        function handleCredentialResponse(response) {
+            // Decode token JWT dari Google untuk ambil data profil (Nama, Email, Foto)
+            const responsePayload = jwt_decode(response.credential);
+
+            const userName = responsePayload.name;
+            const userAvatar = responsePayload.picture;
+
+            // Simpan ke localStorage agar sesi tetap tersimpan saat refresh
+            localStorage.setItem('google_logged_in', 'true');
+            localStorage.setItem('google_username', userName);
+            localStorage.setItem('google_avatar', userAvatar);
+
             checkLoginState();
         }
 
-        function logoutDiscord() {
-            localStorage.removeItem('discord_logged_in');
-            localStorage.removeItem('discord_username');
-            localStorage.removeItem('discord_avatar');
-            checkLoginState();
+        function logoutGoogle() {
+            localStorage.removeItem('google_logged_in');
+            localStorage.removeItem('google_username');
+            localStorage.removeItem('google_avatar');
+            
+            // Reload halaman atau reset tampilan tombol login google
+            location.reload();
         }
 
         function checkLoginState() {
-            const isLoggedIn = localStorage.getItem('discord_logged_in');
-            const loginBtn = document.querySelector('#auth-container button');
+            const isLoggedIn = localStorage.getItem('google_logged_in');
+            const googleBtn = document.querySelector('.g_id_signin');
+            const googleScriptLoad = document.getElementById('g_id_onload');
             const profileDiv = document.getElementById('user-profile');
 
             if (isLoggedIn) {
-                loginBtn.classList.add('hidden');
+                if (googleBtn) googleBtn.style.display = 'none';
+                if (googleScriptLoad) googleScriptLoad.remove();
+                
                 profileDiv.classList.remove('hidden');
                 profileDiv.classList.add('flex');
                 
-                document.getElementById('user-name').innerText = localStorage.getItem('discord_username');
-                document.getElementById('user-avatar').src = localStorage.getItem('discord_avatar');
+                document.getElementById('user-name').innerText = localStorage.getItem('google_username');
+                document.getElementById('user-avatar').src = localStorage.getItem('google_avatar');
             } else {
-                loginBtn.classList.remove('hidden');
                 profileDiv.classList.remove('flex');
                 profileDiv.classList.add('hidden');
             }
